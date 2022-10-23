@@ -1,0 +1,51 @@
+.title img {
+    margin-right:10px;
+}
+.title h1, .title img {
+    display:inline-block;
+    vertical-align:middle;
+    font-family: 'Manjari', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffffff;
+    font-family: 'Manjari', sans-serif;
+}
+
+.table {
+    margin: 30px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: #efeded;
+    border-spacing:0;
+}
+
+.table td {
+    border-bottom: 1px solid #000000;
+    border-color:#bdbcbc;
+    padding:10px;
+}
+
+.table tr {
+    height: 30px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+.table tr:first-child {
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.row {
+    margin: 30px;
+}
