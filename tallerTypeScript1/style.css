@@ -26,6 +26,7 @@ body {
     border-radius: 5px;
     background-color: #efeded;
     border-spacing:0;
+    width: 600px;
 }
 
 .table td {
@@ -35,17 +36,19 @@ body {
 }
 
 .table tr {
-    height: 30px;
+    height: 50px;
     margin-top: 2px;
     margin-bottom: 2px;
     text-align: left;
 }
 
-.table tr:first-child {
-    font-weight: bold;
-    background-color: #ffffff;
-}
-
 .row {
     margin: 30px;
+}
+
+.col {
+    display: inline-block;
+    width: 300px;
+    margin: 10px;
+    text-align: justify;
 }

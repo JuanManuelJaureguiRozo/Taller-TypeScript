@@ -39,7 +39,7 @@ export const nf = new Netflix(series);
 //Tabla de series
 
 let serieTable: HTMLElement = document.getElementById("serie")!;
-let estadisticaTable: HTMLElement = document.getElementById("estadistica")!;
+let statisticTable: HTMLElement = document.getElementById("statistic")!;
 
 mostrarDatosSeries(nf.series);
 mostrarPromedioTemporadas(nf.series);
@@ -48,30 +48,53 @@ mostrarPromedioTemporadas(nf.series);
 
 function mostrarDatosSeries(series: Serie[]): void {
     let tbodySerie = document.createElement("tbody");
-    tbodySerie.innerHTML = `<tr><td>#</td><td>Name</td><td>Channel</td><td>Seasons</td></tr>`;
-    serieTable.appendChild(tbodySerie);
     for(let serie of series)
     {
-        let trElement:HTMLElement = document.createElement("tr");
+        let trElement: HTMLElement = document.createElement("tr");
+        trElement.setAttribute("position", serie.position.toString());
+        trElement.onclick = (event) => {
+        
+        let position = (event as MouseEvent & {path: {position: string}[]}).path[1].position
+        
+        let serieClick: Serie = series[Number(position)-1]   
+        
+        let card: HTMLElement = document.getElementById("card")!;
+        
+        let picture: HTMLElement = document.getElementById("picture")!;
+        picture.setAttribute("src", serie.picture)
+
+        let review: HTMLElement = document.getElementById("review")!;
+        review.setAttribute("href", serie.review);
+
+        let description: HTMLElement = document.getElementById("description")!;
+        description.innerHTML=`${serie.description}`
+
+        let name: HTMLElement =document.getElementById("name")!;
+        name.innerHTML=`${serie.name}`
+        
+        card.style["display"] = "unset"; 
+
+        }
+
         trElement.innerHTML = `<td>${serie.position}</td><td>${serie.name}</td><td>${serie.channel}</td><td>${serie.seasons}</td>`;
-        serieTable.appendChild(trElement);
+        tbodySerie.appendChild(trElement);
+
     }
+    serieTable.appendChild(tbodySerie);
 }
 
 //Función para mostrar el promedio de series
 
 function mostrarPromedioTemporadas(series: Serie[]): void {
-    let trElement: HTMLElement = document.createElement("tr");
-    estadisticaTable.appendChild(trElement);
+    let tbodystatistic: HTMLElement = document.createElement("tBody");
     let promedio: number = 0;
     for(let serie of series)
     {
         promedio += serie.seasons;
     }
     let res = promedio / series.length;
-    trElement.innerHTML = `<td><b>Seasons average: </b></td><td>${res}</td>`;
-}
-
-function mostrarInformacionSerie(series: Serie[]): void {
-
+    let trElement: HTMLElement = document.createElement("tr");
+    trElement.innerHTML = `<td class = "promedio">Seasons Average: ${res}</td>`;
+    tbodystatistic.appendChild(trElement);    
+    statisticTable.appendChild(tbodystatistic);
 }
